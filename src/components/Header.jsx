@@ -77,8 +77,8 @@ const Header = () => {
 
   // Determine what elements to show based on screen width
   const showDesktopNav = windowWidth > 768
-  const showContactInfo = windowWidth > 1024
-  const showCtaButton = windowWidth > 820
+  const showContactInfo = windowWidth > 1100
+  const showCtaButton = windowWidth > 800
   const showMobileMenu = windowWidth <= 768
 
   return (

@@ -54,29 +54,57 @@ const Hero = () => {
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
         >
-          <div className="hero-text">
-            <motion.span 
-              className="hero-subtitle"
-              variants={itemVariants}
-            >
-              Fine Dining Experience
-            </motion.span>
-            
-            <motion.h1 
-              className="hero-title"
-              variants={itemVariants}
-            >
-              Bella Vista
-            </motion.h1>
-            
-            <motion.p 
-              className="hero-description"
-              variants={itemVariants}
-            >
-              Experience culinary excellence in an atmosphere of timeless elegance. 
-              Where every dish tells a story and every moment becomes a cherished memory.
-            </motion.p>
+          <div className="hero-left">
+            <div className="hero-text">
+              <motion.span 
+                className="hero-subtitle"
+                variants={itemVariants}
+              >
+                Fine Dining Experience
+              </motion.span>
+              
+              <motion.h1 
+                className="hero-title"
+                variants={itemVariants}
+              >
+                Bella Vista
+              </motion.h1>
+              
+              <motion.p 
+                className="hero-description"
+                variants={itemVariants}
+              >
+                Experience culinary excellence in an atmosphere of timeless elegance. 
+                Where every dish tells a story and every moment becomes a cherished memory.
+              </motion.p>
 
+              <motion.div 
+                className="hero-actions"
+                variants={itemVariants}
+              >
+                <motion.a 
+                  href="#contact" 
+                  className="btn btn-primary"
+                  whileHover={{ scale: 1.05, boxShadow: "0 10px 25px rgba(212, 175, 55, 0.4)" }}
+                  whileTap={{ scale: 0.95 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                >
+                  Reserve Table
+                </motion.a>
+                <motion.a 
+                  href="#menu" 
+                  className="btn btn-secondary"
+                  whileHover={{ scale: 1.05, boxShadow: "0 10px 25px rgba(255, 255, 255, 0.2)" }}
+                  whileTap={{ scale: 0.95 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                >
+                  View Menu
+                </motion.a>
+              </motion.div>
+            </div>
+          </div>
+
+          <div className="hero-right">
             <motion.div 
               className="hero-stats"
               variants={itemVariants}
@@ -101,30 +129,6 @@ const Hero = () => {
               ))}
             </motion.div>
           </div>
-
-          <motion.div 
-            className="hero-actions"
-            variants={itemVariants}
-          >
-            <motion.a 
-              href="#contact" 
-              className="btn btn-primary"
-              whileHover={{ scale: 1.05, boxShadow: "0 10px 25px rgba(212, 175, 55, 0.4)" }}
-              whileTap={{ scale: 0.95 }}
-              transition={{ type: "spring", stiffness: 400, damping: 10 }}
-            >
-              Reserve Table
-            </motion.a>
-            <motion.a 
-              href="#menu" 
-              className="btn btn-secondary"
-              whileHover={{ scale: 1.05, boxShadow: "0 10px 25px rgba(255, 255, 255, 0.2)" }}
-              whileTap={{ scale: 0.95 }}
-              transition={{ type: "spring", stiffness: 400, damping: 10 }}
-            >
-              View Menu
-            </motion.a>
-          </motion.div>
         </motion.div>
       </div>
     </section>

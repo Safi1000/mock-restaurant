@@ -27,7 +27,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 2rem;
+  gap: 1.5rem;
   width: 100%;
   flex-wrap: nowrap;
 }
@@ -38,6 +38,7 @@
   cursor: pointer;
   flex-shrink: 0;
   min-width: fit-content;
+  margin-right: 1rem;
 }
 
 .logo-text {
@@ -62,25 +63,23 @@
 /* Desktop Navigation */
 .nav-desktop {
   display: flex;
-  gap: 3rem;
+  gap: 2rem;
   align-items: center;
-  flex-shrink: 1;
+  flex-shrink: 0;
   min-width: 0;
-  flex: 1;
-  justify-content: center;
 }
 
 .nav-link {
   color: var(--soft-white);
   text-decoration: none;
   font-weight: 500;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   text-transform: uppercase;
   letter-spacing: 1px;
   position: relative;
   transition: all 0.3s ease;
   white-space: nowrap;
-  padding: 0.5rem 1rem;
+  padding: 0.4rem 0.8rem;
 }
 
 .nav-link::after {
@@ -101,18 +100,19 @@
 /* Header Contact Info */
 .header-contact {
   display: flex;
-  gap: 2rem;
+  gap: 1.5rem;
   align-items: center;
   flex-shrink: 0;
   min-width: 0;
+  margin-left: auto;
 }
 
 .contact-item {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.4rem;
   color: var(--light-cream);
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   opacity: 0.9;
   white-space: nowrap;
 }
@@ -126,19 +126,18 @@
 .cta-button {
   background: linear-gradient(135deg, var(--primary-gold), #B8860B);
   color: var(--dark-brown);
-  padding: 0.75rem 1.5rem;
+  padding: 0.6rem 1.2rem;
   border-radius: 25px;
   text-decoration: none;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 1px;
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   transition: all 0.3s ease;
   border: 2px solid transparent;
   box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
   white-space: nowrap;
   flex-shrink: 0;
-  margin-left: auto;
 }
 
 .cta-button:hover {
@@ -307,65 +306,39 @@
 /* Responsive Design */
 @media (max-width: 1200px) {
   .header-contact {
-    gap: 1.5rem;
+    gap: 1rem;
   }
   
   .contact-item {
-    font-size: 0.8rem;
+    font-size: 0.75rem;
   }
   
   .nav-desktop {
-    gap: 2.5rem;
+    gap: 1.5rem;
   }
   
   .nav-link {
-    font-size: 0.9rem;
-    padding: 0.4rem 0.8rem;
+    font-size: 0.85rem;
+    padding: 0.3rem 0.6rem;
   }
   
   .cta-button {
-    padding: 0.65rem 1.25rem;
-    font-size: 0.8rem;
+    padding: 0.55rem 1rem;
+    font-size: 0.75rem;
   }
   
   .header-content {
-    gap: 1.75rem;
+    gap: 1.25rem;
   }
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1100px) {
   .header-contact {
     display: none;
   }
   
   .nav-desktop {
-    gap: 2.25rem;
-    flex: 1;
-    justify-content: center;
-  }
-  
-  .header-content {
     gap: 2rem;
-  }
-  
-  .cta-button {
-    margin-left: 0;
-  }
-}
-
-@media (max-width: 968px) {
-  .nav-desktop {
-    gap: 2rem;
-  }
-  
-  .nav-link {
-    font-size: 0.85rem;
-    padding: 0.4rem 0.75rem;
-  }
-  
-  .cta-button {
-    padding: 0.6rem 1.1rem;
-    font-size: 0.75rem;
   }
   
   .header-content {
@@ -373,18 +346,32 @@
   }
 }
 
-@media (max-width: 820px) {
+@media (max-width: 900px) {
+  .nav-desktop {
+    gap: 1.5rem;
+  }
+  
+  .nav-link {
+    font-size: 0.8rem;
+    padding: 0.3rem 0.5rem;
+  }
+  
+  .cta-button {
+    padding: 0.5rem 0.9rem;
+    font-size: 0.7rem;
+  }
+  
+  .header-content {
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 800px) {
   .cta-button {
     display: none;
   }
   
   .nav-desktop {
-    gap: 2.5rem;
-    flex: 1;
-    justify-content: center;
-  }
-  
-  .header-content {
     gap: 2rem;
   }
 }
@@ -427,7 +414,7 @@
   }
   
   .header-content {
-    gap: 1.5rem;
+    gap: 1rem;
     justify-content: space-between;
   }
 }
