@@ -7,14 +7,25 @@ import './Header.css'
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
 
   useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768)
+    }
+    
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50)
     }
 
+    handleResize()
+    window.addEventListener('resize', handleResize)
     window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
+    
+    return () => {
+      window.removeEventListener('resize', handleResize)
+      window.removeEventListener('scroll', handleScroll)
+    }
   }, [])
 
   const navItems = [
@@ -82,80 +93,88 @@ const Header = () => {
               <span className="logo-tagline">Fine Dining</span>
             </motion.div>
 
-            {/* Desktop Navigation */}
-            <nav className="nav-desktop">
-              {navItems.map((item, index) => (
-                <motion.a
-                  key={item.href}
-                  href={item.href}
-                  className="nav-link"
-                  whileHover={{ scale: 1.1, color: "#D4AF37" }}
-                  initial={{ opacity: 0, y: -20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.4, delay: index * 0.1, type: "spring", stiffness: 300 }}
-                >
-                  {item.label}
-                </motion.a>
-              ))}
-            </nav>
-
-            {/* Contact Info */}
-            <div className="header-contact">
-              <div className="contact-item">
-                <Phone size={16} />
-                <span>(555) 123-4567</span>
-              </div>
-              <div className="contact-item">
-                <MapPin size={16} />
-                <span>Downtown NYC</span>
-              </div>
-            </div>
-
-            {/* CTA Button */}
-            <motion.a 
-              href="#contact" 
-              className="cta-button"
-              whileHover={{ 
-                scale: 1.05,
-                boxShadow: "0 10px 25px rgba(212, 175, 55, 0.4)"
-              }}
-              whileTap={{ scale: 0.95 }}
-              transition={{ type: "spring", stiffness: 400, damping: 10 }}
-            >
-              Reserve Table
-            </motion.a>
-
-            {/* Mobile Menu Toggle */}
-            <motion.button
-              className="menu-toggle"
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              whileTap={{ scale: 0.9 }}
-              transition={{ type: "spring", stiffness: 300 }}
-            >
-              <AnimatePresence mode="wait">
-                {isMenuOpen ? (
-                  <motion.div
-                    key="close"
-                    initial={{ rotate: 0 }}
-                    animate={{ rotate: 180 }}
-                    exit={{ rotate: 0 }}
-                    transition={{ duration: 0.3 }}
+            {/* Desktop Navigation - Only show on larger screens */}
+            {!isMobile && (
+              <nav className="nav-desktop">
+                {navItems.map((item, index) => (
+                  <motion.a
+                    key={item.href}
+                    href={item.href}
+                    className="nav-link"
+                    whileHover={{ scale: 1.1, color: "#D4AF37" }}
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.4, delay: index * 0.1, type: "spring", stiffness: 300 }}
                   >
-                    <X size={24} />
-                  </motion.div>
-                ) : (
-                  <motion.div
-                    key="menu"
-                    initial={{ rotate: 180 }}
-                    animate={{ rotate: 0 }}
-                    exit={{ rotate: 180 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <Menu size={24} />
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </motion.button>
+                    {item.label}
+                  </motion.a>
+                ))}
+              </nav>
+            )}
+
+            {/* Contact Info - Only show on larger screens */}
+            {!isMobile && window.innerWidth > 1024 && (
+              <div className="header-contact">
+                <div className="contact-item">
+                  <Phone size={16} />
+                  <span>(555) 123-4567</span>
+                </div>
+                <div className="contact-item">
+                  <MapPin size={16} />
+                  <span>Downtown NYC</span>
+                </div>
+              </div>
+            )}
+
+            {/* CTA Button - Only show on larger screens */}
+            {!isMobile && window.innerWidth > 820 && (
+              <motion.a 
+                href="#contact" 
+                className="cta-button"
+                whileHover={{ 
+                  scale: 1.05,
+                  boxShadow: "0 10px 25px rgba(212, 175, 55, 0.4)"
+                }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ type: "spring", stiffness: 400, damping: 10 }}
+              >
+                Reserve Table
+              </motion.a>
+            )}
+
+            {/* Mobile Menu Toggle - Only show on mobile */}
+            {isMobile && (
+              <motion.button
+                className="menu-toggle"
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                whileTap={{ scale: 0.9 }}
+                transition={{ type: "spring", stiffness: 300 }}
+              >
+                <AnimatePresence mode="wait">
+                  {isMenuOpen ? (
+                    <motion.div
+                      key="close"
+                      initial={{ rotate: 0 }}
+                      animate={{ rotate: 180 }}
+                      exit={{ rotate: 0 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <X size={24} />
+                    </motion.div>
+                  ) : (
+                    <motion.div
+                      key="menu"
+                      initial={{ rotate: 180 }}
+                      animate={{ rotate: 0 }}
+                      exit={{ rotate: 180 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <Menu size={24} />
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.button>
+            )}
           </div>
         </div>
       </motion.header>
