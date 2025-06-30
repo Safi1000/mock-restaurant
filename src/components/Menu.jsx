@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import './Menu.css'
 
+// Interactive menu component with category filtering and dynamic content
 const Menu = () => {
   const [activeCategory, setActiveCategory] = useState('appetizers')
 
