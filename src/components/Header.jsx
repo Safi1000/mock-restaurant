@@ -7,18 +7,20 @@ import './Header.css'
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
-  const [isMobile, setIsMobile] = useState(false)
+  const [windowWidth, setWindowWidth] = useState(0)
 
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768)
+      setWindowWidth(window.innerWidth)
     }
     
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50)
     }
 
+    // Initialize window width
     handleResize()
+    
     window.addEventListener('resize', handleResize)
     window.addEventListener('scroll', handleScroll)
     
@@ -73,6 +75,12 @@ const Header = () => {
     }
   }
 
+  // Determine what elements to show based on screen width
+  const showDesktopNav = windowWidth > 768
+  const showContactInfo = windowWidth > 1024
+  const showCtaButton = windowWidth > 820
+  const showMobileMenu = windowWidth <= 768
+
   return (
     <>
       <motion.header 
@@ -93,8 +101,8 @@ const Header = () => {
               <span className="logo-tagline">Fine Dining</span>
             </motion.div>
 
-            {/* Desktop Navigation - Only show on larger screens */}
-            {!isMobile && (
+            {/* Desktop Navigation */}
+            {showDesktopNav && (
               <nav className="nav-desktop">
                 {navItems.map((item, index) => (
                   <motion.a
@@ -112,8 +120,8 @@ const Header = () => {
               </nav>
             )}
 
-            {/* Contact Info - Only show on larger screens */}
-            {!isMobile && window.innerWidth > 1024 && (
+            {/* Contact Info */}
+            {showContactInfo && (
               <div className="header-contact">
                 <div className="contact-item">
                   <Phone size={16} />
@@ -126,8 +134,8 @@ const Header = () => {
               </div>
             )}
 
-            {/* CTA Button - Only show on larger screens */}
-            {!isMobile && window.innerWidth > 820 && (
+            {/* CTA Button */}
+            {showCtaButton && (
               <motion.a 
                 href="#contact" 
                 className="cta-button"
@@ -142,8 +150,8 @@ const Header = () => {
               </motion.a>
             )}
 
-            {/* Mobile Menu Toggle - Only show on mobile */}
-            {isMobile && (
+            {/* Mobile Menu Toggle */}
+            {showMobileMenu && (
               <motion.button
                 className="menu-toggle"
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
