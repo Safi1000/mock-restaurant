@@ -8,15 +8,19 @@
   backdrop-filter: blur(20px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  padding: 1rem 0;
+  padding: 0.75rem 0;
+  height: 70px;
+  display: flex;
+  align-items: center;
 }
 
 .header.scrolled {
-  background: rgba(44, 24, 16, 0.95);
+  background: rgba(44, 24, 16, 0.98);
   backdrop-filter: blur(25px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-  border-bottom: 1px solid rgba(212, 175, 55, 0.2);
-  padding: 0.75rem 0;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  border-bottom: 2px solid var(--primary-gold);
+  padding: 0.5rem 0;
+  height: 60px;
 }
 
 .header-content {
@@ -34,7 +38,7 @@
 
 .logo-text {
   font-family: var(--font-heading);
-  font-size: 2rem;
+  font-size: 1.75rem;
   font-weight: 700;
   color: var(--soft-white);
   line-height: 1;
@@ -43,11 +47,11 @@
 
 .logo-tagline {
   font-family: var(--font-body);
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   color: var(--primary-gold);
   text-transform: uppercase;
   letter-spacing: 2px;
-  margin-top: 0.25rem;
+  margin-top: 0.15rem;
   opacity: 0.9;
 }
 
@@ -108,16 +112,16 @@
 .cta-button {
   background: linear-gradient(135deg, var(--primary-gold), #B8860B);
   color: var(--dark-brown);
-  padding: 0.75rem 1.5rem;
-  border-radius: 30px;
+  padding: 0.625rem 1.25rem;
+  border-radius: 25px;
   text-decoration: none;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 1px;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   transition: all 0.3s ease;
   border: 2px solid transparent;
-  box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
 }
 
 .cta-button:hover {
@@ -309,11 +313,21 @@
   }
   
   .logo-text {
-    font-size: 1.75rem;
+    font-size: 1.5rem;
   }
   
   .logo-tagline {
-    font-size: 0.7rem;
+    font-size: 0.65rem;
+  }
+
+  .header {
+    height: 60px;
+    padding: 0.5rem 0;
+  }
+
+  .header.scrolled {
+    height: 55px;
+    padding: 0.4rem 0;
   }
 }
 
@@ -327,7 +341,7 @@
   }
   
   .logo-text {
-    font-size: 1.5rem;
+    font-size: 1.35rem;
   }
   
   .mobile-menu {

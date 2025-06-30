@@ -1,5 +1,5 @@
 import React from 'react'
-import { ChevronDown, Star, Award, Users } from 'lucide-react'
+import { Star, Award, Users } from 'lucide-react'
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import './Hero.css'
@@ -27,17 +27,6 @@ const Hero = () => {
       y: 0,
       opacity: 1,
       transition: { duration: 0.8, ease: "easeOut" }
-    }
-  }
-
-  const floatingVariants = {
-    floating: {
-      y: [-10, 10, -10],
-      transition: {
-        duration: 3,
-        repeat: Infinity,
-        ease: "easeInOut"
-      }
     }
   }
 
@@ -96,7 +85,11 @@ const Hero = () => {
                 <motion.div 
                   key={index} 
                   className="stat-item"
-                  whileHover={{ scale: 1.05 }}
+                  whileHover={{ 
+                    scale: 1.08,
+                    y: -10,
+                    transition: { type: "spring", stiffness: 400, damping: 10 }
+                  }}
                   transition={{ type: "spring", stiffness: 300 }}
                 >
                   <stat.icon className="stat-icon" />
@@ -132,15 +125,6 @@ const Hero = () => {
               View Menu
             </motion.a>
           </motion.div>
-        </motion.div>
-
-        <motion.div 
-          className="scroll-indicator"
-          variants={floatingVariants}
-          animate="floating"
-        >
-          <span>Scroll to explore</span>
-          <ChevronDown size={24} />
         </motion.div>
       </div>
     </section>
