@@ -60,7 +60,12 @@ const Gallery = () => {
         <div className="gallery-grid fade-in-up">
           {galleryImages.map((image, index) => (
             <div key={index} className={`gallery-item item-${index + 1}`}>
-              <img src={image.src} alt={image.alt} />
+              <img 
+                src={image.src} 
+                alt={image.alt} 
+                loading="lazy"
+                decoding="async"
+              />
               <div className="gallery-overlay">
                 <span className="gallery-category">{image.category}</span>
                 <h4 className="gallery-title">{image.alt}</h4>
