@@ -113,6 +113,8 @@ const Contact = () => {
                     onChange={handleInputChange}
                     required
                     placeholder="Enter your full name"
+                    aria-describedby="name-help"
+                    autoComplete="name"
                   />
                 </div>
                 <div className="form-group">
@@ -125,6 +127,8 @@ const Contact = () => {
                     onChange={handleInputChange}
                     required
                     placeholder="your@email.com"
+                    aria-describedby="email-help"
+                    autoComplete="email"
                   />
                 </div>
               </div>
