@@ -147,6 +147,7 @@
 }
 
 /* Mobile Styles */
+/* Enhanced mobile responsiveness for better user experience */
 @media (max-width: 768px) {
   .hero {
     height: 90vh;
