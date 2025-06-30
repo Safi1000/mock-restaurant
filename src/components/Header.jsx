@@ -77,7 +77,6 @@ const Header = () => {
 
   // Determine what elements to show based on screen width
   const showDesktopNav = windowWidth > 768
-  const showContactInfo = windowWidth > 1100
   const showCtaButton = windowWidth > 800
   const showMobileMenu = windowWidth <= 768
 
@@ -101,6 +100,22 @@ const Header = () => {
               <span className="logo-tagline">Fine Dining</span>
             </motion.div>
 
+            {/* CTA Button - Left Side */}
+            {showCtaButton && (
+              <motion.a 
+                href="#contact" 
+                className="cta-button"
+                whileHover={{ 
+                  scale: 1.05,
+                  boxShadow: "0 10px 25px rgba(212, 175, 55, 0.4)"
+                }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ type: "spring", stiffness: 400, damping: 10 }}
+              >
+                Reserve Table
+              </motion.a>
+            )}
+
             {/* Desktop Navigation */}
             {showDesktopNav && (
               <nav className="nav-desktop">
@@ -118,36 +133,6 @@ const Header = () => {
                   </motion.a>
                 ))}
               </nav>
-            )}
-
-            {/* Contact Info */}
-            {showContactInfo && (
-              <div className="header-contact">
-                <div className="contact-item">
-                  <Phone size={16} />
-                  <span>(555) 123-4567</span>
-                </div>
-                <div className="contact-item">
-                  <MapPin size={16} />
-                  <span>Downtown NYC</span>
-                </div>
-              </div>
-            )}
-
-            {/* CTA Button */}
-            {showCtaButton && (
-              <motion.a 
-                href="#contact" 
-                className="cta-button"
-                whileHover={{ 
-                  scale: 1.05,
-                  boxShadow: "0 10px 25px rgba(212, 175, 55, 0.4)"
-                }}
-                whileTap={{ scale: 0.95 }}
-                transition={{ type: "spring", stiffness: 400, damping: 10 }}
-              >
-                Reserve Table
-              </motion.a>
             )}
 
             {/* Mobile Menu Toggle */}
