@@ -2,6 +2,10 @@
 
 A beautiful, modern restaurant landing page built with React and Vite. This single-page application showcases a fine dining restaurant with elegant design, responsive layout, and beautiful imagery from Unsplash API.
 
+## 🌐 Live Demo
+
+🔗 **[View Live Demo](https://safi1000.github.io/mock-restaurant)**
+
 ## 🍽️ Features
 
 - **Modern Design**: Elegant color scheme with gold and brown tones
@@ -11,6 +15,9 @@ A beautiful, modern restaurant landing page built with React and Vite. This sing
 - **Reservation Form**: Functional contact form for table reservations
 - **Customer Testimonials**: Social proof with star ratings
 - **Smooth Animations**: CSS animations and transitions throughout
+- **SEO Optimized**: Meta tags and Open Graph properties for better search visibility
+- **Accessibility**: ARIA attributes and semantic HTML for better accessibility
+- **Performance**: Lazy loading images and optimized assets
 
 ## 🛠️ Technologies Used
 
