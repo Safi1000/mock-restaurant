@@ -1,59 +1,147 @@
 import React from 'react'
-import { ChefHat, Star, Clock } from 'lucide-react'
+import { ChevronDown, Star, Award, Users } from 'lucide-react'
+import { motion } from 'framer-motion'
+import { useInView } from 'react-intersection-observer'
 import './Hero.css'
 
 const Hero = () => {
+  const [ref, inView] = useInView({
+    triggerOnce: true,
+    threshold: 0.1
+  })
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        delayChildren: 0.3,
+        staggerChildren: 0.2
+      }
+    }
+  }
+
+  const itemVariants = {
+    hidden: { y: 50, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: { duration: 0.8, ease: "easeOut" }
+    }
+  }
+
+  const floatingVariants = {
+    floating: {
+      y: [-10, 10, -10],
+      transition: {
+        duration: 3,
+        repeat: Infinity,
+        ease: "easeInOut"
+      }
+    }
+  }
+
+  const stats = [
+    { icon: Star, label: "Award Winning", value: "2024" },
+    { icon: Award, label: "Michelin Guide", value: "Featured" },
+    { icon: Users, label: "Happy Guests", value: "10K+" }
+  ]
+
   return (
-    <section id="home" className="hero">
+    <section id="hero" className="hero" ref={ref}>
       <div className="hero-background">
         <img 
-          src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2074&q=80"
+          src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" 
           alt="Elegant restaurant interior"
-          className="hero-image"
+          className="hero-bg-image"
         />
-        <div className="hero-overlay"></div>
       </div>
+      <div className="hero-overlay"></div>
       
       <div className="container">
-        <div className="hero-content">
-          <div className="hero-text fade-in-up">
-            <span className="hero-subtitle">Welcome to</span>
-            <h1 className="hero-title">Bella Vista</h1>
-            <p className="hero-description">
+        <motion.div 
+          className="hero-content"
+          variants={containerVariants}
+          initial="hidden"
+          animate={inView ? "visible" : "hidden"}
+        >
+          <div className="hero-text">
+            <motion.span 
+              className="hero-subtitle"
+              variants={itemVariants}
+            >
+              Fine Dining Experience
+            </motion.span>
+            
+            <motion.h1 
+              className="hero-title"
+              variants={itemVariants}
+            >
+              Bella Vista
+            </motion.h1>
+            
+            <motion.p 
+              className="hero-description"
+              variants={itemVariants}
+            >
               Experience culinary excellence in an atmosphere of timeless elegance. 
-              Our master chefs craft extraordinary dishes using the finest seasonal ingredients, 
-              creating unforgettable moments for every occasion.
-            </p>
-            
-            <div className="hero-features">
-              <div className="feature">
-                <ChefHat className="feature-icon" />
-                <span>Master Chefs</span>
-              </div>
-              <div className="feature">
-                <Star className="feature-icon" />
-                <span>5-Star Dining</span>
-              </div>
-              <div className="feature">
-                <Clock className="feature-icon" />
-                <span>Fresh Daily</span>
-              </div>
-            </div>
-            
-            <div className="hero-actions">
-              <a href="#menu" className="btn btn-primary">
-                View Our Menu
-              </a>
-              <a href="#contact" className="btn btn-secondary">
-                Make Reservation
-              </a>
-            </div>
+              Where every dish tells a story and every moment becomes a cherished memory.
+            </motion.p>
+
+            <motion.div 
+              className="hero-stats"
+              variants={itemVariants}
+            >
+              {stats.map((stat, index) => (
+                <motion.div 
+                  key={index} 
+                  className="stat-item"
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                >
+                  <stat.icon className="stat-icon" />
+                  <div className="stat-content">
+                    <span className="stat-value">{stat.value}</span>
+                    <span className="stat-label">{stat.label}</span>
+                  </div>
+                </motion.div>
+              ))}
+            </motion.div>
           </div>
-        </div>
-      </div>
-      
-      <div className="scroll-indicator">
-        <div className="scroll-arrow"></div>
+
+          <motion.div 
+            className="hero-actions"
+            variants={itemVariants}
+          >
+            <motion.a 
+              href="#contact" 
+              className="btn btn-primary"
+              whileHover={{ scale: 1.05, boxShadow: "0 10px 25px rgba(212, 175, 55, 0.4)" }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ type: "spring", stiffness: 400, damping: 10 }}
+            >
+              Reserve Table
+            </motion.a>
+            <motion.a 
+              href="#menu" 
+              className="btn btn-secondary"
+              whileHover={{ scale: 1.05, boxShadow: "0 10px 25px rgba(255, 255, 255, 0.2)" }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ type: "spring", stiffness: 400, damping: 10 }}
+            >
+              View Menu
+            </motion.a>
+          </motion.div>
+        </motion.div>
+
+        <motion.div 
+          className="scroll-indicator"
+          variants={floatingVariants}
+          animate="floating"
+        >
+          <span>Scroll to explore</span>
+          <ChevronDown size={24} />
+        </motion.div>
       </div>
     </section>
   )

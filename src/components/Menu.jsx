@@ -1,152 +1,245 @@
 import React, { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { useInView } from 'react-intersection-observer'
 import './Menu.css'
 
 // Interactive menu component with category filtering and dynamic content
 const Menu = () => {
-  const [activeCategory, setActiveCategory] = useState('appetizers')
+  const [activeCategory, setActiveCategory] = useState('all')
+  const [ref, inView] = useInView({
+    triggerOnce: true,
+    threshold: 0.1
+  })
 
-  const menuCategories = [
-    { id: 'appetizers', name: 'Appetizers' },
-    { id: 'mains', name: 'Main Courses' },
-    { id: 'desserts', name: 'Desserts' },
-    { id: 'beverages', name: 'Beverages' }
-  ]
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        delayChildren: 0.3,
+        staggerChildren: 0.1
+      }
+    }
+  }
+
+  const itemVariants = {
+    hidden: { y: 50, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: { duration: 0.6, ease: "easeOut" }
+    },
+    exit: {
+      y: -50,
+      opacity: 0,
+      transition: { duration: 0.3 }
+    }
+  }
+
+  const categoryVariants = {
+    inactive: { scale: 1, color: "#8B7355" },
+    active: { 
+      scale: 1.05, 
+      color: "#D4AF37",
+      transition: { type: "spring", stiffness: 300 }
+    }
+  }
 
   const menuItems = {
     appetizers: [
       {
         name: 'Truffle Arancini',
-        description: 'Crispy risotto balls with black truffle, aged parmesan, and herb aioli',
+        description: 'Crispy risotto balls filled with wild mushrooms and black truffle, served with saffron aioli',
         price: '$18',
-        image: 'https://images.unsplash.com/photo-1551782450-17144efb9c50?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80'
+        image: 'https://images.unsplash.com/photo-1551782450-6096c2fd074c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+        dietary: ['vegetarian']
       },
       {
-        name: 'Seared Scallops',
-        description: 'Pan-seared scallops with cauliflower purée and pancetta crisps',
-        price: '$24',
-        image: 'https://images.unsplash.com/photo-1565958011703-44f9829ba187?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80'
+        name: 'Oysters Rockefeller',
+        description: 'Fresh Blue Point oysters topped with creamed spinach and herbs, finished with Pernod',
+        price: '$22',
+        image: 'https://images.unsplash.com/photo-1585032226651-759b368d7246?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+        dietary: ['gluten-free']
       },
       {
-        name: 'Burrata Caprese',
-        description: 'Creamy burrata with heirloom tomatoes, basil oil, and aged balsamic',
-        price: '$16',
-        image: 'https://images.unsplash.com/photo-1571197119282-621c1ea54ea8?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80'
+        name: 'Foie Gras Terrine',
+        description: 'House-made terrine with brioche toast, fig compote, and aged balsamic reduction',
+        price: '$28',
+        image: 'https://images.unsplash.com/photo-1544124951-21279b84f398?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+        dietary: []
       }
     ],
     mains: [
       {
         name: 'Wagyu Beef Tenderloin',
-        description: 'Grilled wagyu with roasted bone marrow, seasonal vegetables, and red wine jus',
-        price: '$68',
-        image: 'https://images.unsplash.com/photo-1546833999-b9f581a1996d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80'
+        description: 'Grade A5 Wagyu with roasted bone marrow, truffle potato gratin, and red wine jus',
+        price: '$85',
+        image: 'https://images.unsplash.com/photo-1546833999-b9f581a1996d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+        dietary: ['gluten-free']
       },
       {
-        name: 'Mediterranean Sea Bass',
-        description: 'Pan-roasted sea bass with lemon confit, olives, and salmoriglio sauce',
+        name: 'Pan-Seared Halibut',
+        description: 'Atlantic halibut with cauliflower purée, pancetta crisps, and champagne beurre blanc',
         price: '$42',
-        image: 'https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80'
+        image: 'https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+        dietary: ['gluten-free']
       },
       {
-        name: 'Duck Breast Confit',
-        description: 'Slow-cooked duck breast with cherry gastrique and wild rice pilaf',
-        price: '$38',
-        image: 'https://images.unsplash.com/photo-1544025162-d76694265947?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80'
+        name: 'Duck à l\'Orange',
+        description: 'Roasted Muscovy duck breast with confit leg, orange gastrique, and wild rice pilaf',
+        price: '$48',
+        image: 'https://images.unsplash.com/photo-1576485375217-d6a95e34d1c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+        dietary: []
       }
     ],
     desserts: [
       {
         name: 'Chocolate Soufflé',
-        description: 'Dark chocolate soufflé with vanilla bean ice cream and gold leaf',
+        description: 'Warm Valrhona chocolate soufflé with vanilla bean ice cream and gold leaf',
+        price: '$16',
+        image: 'https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+        dietary: ['vegetarian']
+      },
+      {
+        name: 'Crème Brûlée Trio',
+        description: 'Classic vanilla, lavender honey, and espresso crème brûlée with fresh berries',
         price: '$14',
-        image: 'https://images.unsplash.com/photo-1551024506-0bccd828d307?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80'
-      },
-      {
-        name: 'Tiramisu Deconstructed',
-        description: 'Classic tiramisu reimagined with espresso caviar and mascarpone mousse',
-        price: '$12',
-        image: 'https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80'
-      },
-      {
-        name: 'Lemon Tart',
-        description: 'Meyer lemon tart with torched meringue and candied lemon zest',
-        price: '$13',
-        image: 'https://images.unsplash.com/photo-1565958011703-44f9829ba187?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80'
+        image: 'https://images.unsplash.com/photo-1551024506-0bccd828d307?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+        dietary: ['vegetarian', 'gluten-free']
       }
     ],
     beverages: [
       {
-        name: 'Bella Vista Signature',
-        description: 'House blend of premium spirits with fresh herbs and seasonal fruits',
-        price: '$16',
-        image: 'https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80'
+        name: 'Wine Pairing',
+        description: 'Sommelier-selected wine pairings for your complete dining experience',
+        price: '$35',
+        image: 'https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+        dietary: []
       },
       {
-        name: 'Wine Pairing Selection',
-        description: 'Curated selection of premium wines to complement your meal',
-        price: '$25',
-        image: 'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80'
-      },
-      {
-        name: 'Artisan Coffee',
-        description: 'Single-origin coffee roasted in-house, served with house-made pastries',
-        price: '$8',
-        image: 'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80'
+        name: 'Signature Cocktail',
+        description: 'House-crafted cocktails featuring premium spirits and artisanal ingredients',
+        price: '$18',
+        image: 'https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+        dietary: []
       }
     ]
   }
 
-  return (
-    <section id="menu" className="menu">
-      <div className="container">
-        <div className="menu-header fade-in-up">
-          <span className="section-subtitle">Culinary Excellence</span>
-          <h2 className="section-title">Our Signature Menu</h2>
-          <p className="menu-intro">
-            Each dish is crafted with passion and precision, using only the finest ingredients 
-            sourced from local farms and international markets.
-          </p>
-        </div>
+  const categories = [
+    { id: 'all', name: 'All Items', count: Object.values(menuItems).flat().length },
+    { id: 'appetizers', name: 'Appetizers', count: menuItems.appetizers.length },
+    { id: 'mains', name: 'Main Courses', count: menuItems.mains.length },
+    { id: 'desserts', name: 'Desserts', count: menuItems.desserts.length },
+    { id: 'beverages', name: 'Beverages', count: menuItems.beverages.length }
+  ]
 
-        <div className="menu-categories fade-in-up">
-          {menuCategories.map((category) => (
-            <button
+  const getDisplayItems = () => {
+    if (activeCategory === 'all') {
+      return Object.values(menuItems).flat()
+    }
+    return menuItems[activeCategory] || []
+  }
+
+  return (
+    <section id="menu" className="menu" ref={ref}>
+      <div className="container">
+        <motion.div 
+          className="menu-header"
+          initial={{ opacity: 0, y: 50 }}
+          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+          transition={{ duration: 0.8 }}
+        >
+          <span className="section-subtitle">Culinary Excellence</span>
+          <h2 className="section-title">Our Menu</h2>
+          <p className="menu-intro">
+            Each dish is crafted with passion and precision, using only the finest seasonal ingredients. 
+            Our menu reflects a perfect harmony of traditional techniques and modern innovation.
+          </p>
+        </motion.div>
+
+        <motion.div 
+          className="menu-categories"
+          initial={{ opacity: 0, y: 30 }}
+          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+        >
+          {categories.map((category) => (
+            <motion.button
               key={category.id}
               className={`category-btn ${activeCategory === category.id ? 'active' : ''}`}
               onClick={() => setActiveCategory(category.id)}
+              variants={categoryVariants}
+              animate={activeCategory === category.id ? 'active' : 'inactive'}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
             >
-              {category.name}
-            </button>
+              <span className="category-name">{category.name}</span>
+              <span className="category-count">({category.count})</span>
+            </motion.button>
           ))}
-        </div>
+        </motion.div>
 
-        <div className="menu-items fade-in-up">
-          <div className="items-grid">
-            {menuItems[activeCategory].map((item, index) => (
-              <div key={index} className="menu-item">
-                <div className="item-image">
-                  <img src={item.image} alt={item.name} />
-                  <div className="item-overlay">
-                    <span className="item-price">{item.price}</span>
+        <motion.div 
+          className="menu-grid"
+          variants={containerVariants}
+          initial="hidden"
+          animate={inView ? "visible" : "hidden"}
+        >
+          <AnimatePresence mode="wait">
+            {getDisplayItems().map((item, index) => (
+              <motion.div
+                key={`${activeCategory}-${item.name}-${index}`}
+                className="menu-item"
+                variants={itemVariants}
+                initial="hidden"
+                animate="visible"
+                exit="exit"
+                layout
+                whileHover={{ 
+                  scale: 1.02,
+                  boxShadow: "0 20px 40px rgba(212, 175, 55, 0.2)"
+                }}
+                transition={{ type: "spring", stiffness: 300, damping: 30 }}
+              >
+                <div className="menu-item-image">
+                  <img 
+                    src={item.image} 
+                    alt={item.name}
+                    loading="lazy"
+                  />
+                  <div className="menu-item-overlay">
+                    <motion.div 
+                      className="dietary-tags"
+                      initial={{ opacity: 0 }}
+                      whileHover={{ opacity: 1 }}
+                    >
+                      {item.dietary.map((tag, tagIndex) => (
+                        <span key={tagIndex} className="dietary-tag">{tag}</span>
+                      ))}
+                    </motion.div>
                   </div>
                 </div>
-                <div className="item-content">
-                  <h3 className="item-name">{item.name}</h3>
-                  <p className="item-description">{item.description}</p>
+                
+                <div className="menu-item-content">
+                  <div className="menu-item-header">
+                    <h3 className="menu-item-name">{item.name}</h3>
+                    <span className="menu-item-price">{item.price}</span>
+                  </div>
+                  <p className="menu-item-description">{item.description}</p>
+                  
+                  <motion.button 
+                    className="add-to-order-btn"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    Add to Order
+                  </motion.button>
                 </div>
-              </div>
+              </motion.div>
             ))}
-          </div>
-        </div>
-
-        <div className="menu-footer fade-in-up">
-          <p className="special-note">
-            * Menu items may vary based on seasonal availability. 
-            Please inform us of any dietary restrictions or allergies.
-          </p>
-          <a href="#contact" className="btn btn-primary">
-            Make a Reservation
-          </a>
-        </div>
+          </AnimatePresence>
+        </motion.div>
       </div>
     </section>
   )
