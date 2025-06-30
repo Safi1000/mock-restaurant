@@ -1,0 +1,16 @@
+.App {
+  min-height: 100vh;
+  background: var(--light-cream);
+}
+
+/* Smooth section transitions */
+section {
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 0.6s ease-in-out;
+}
+
+/* Add some visual separation between sections */
+section:not(:first-child) {
+  border-top: 1px solid rgba(212, 175, 55, 0.1);
+} 
