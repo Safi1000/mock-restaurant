@@ -23,6 +23,30 @@ const Contact = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
+    
+    // Basic form validation
+    if (!formData.name.trim() || !formData.email.trim() || !formData.date || !formData.time) {
+      alert('Please fill in all required fields.')
+      return
+    }
+    
+    // Email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    if (!emailRegex.test(formData.email)) {
+      alert('Please enter a valid email address.')
+      return
+    }
+    
+    // Date validation (must be in the future)
+    const selectedDate = new Date(formData.date)
+    const today = new Date()
+    today.setHours(0, 0, 0, 0)
+    
+    if (selectedDate < today) {
+      alert('Please select a future date for your reservation.')
+      return
+    }
+    
     // In a real application, you would send this data to your backend
     alert('Thank you for your reservation request! We will contact you shortly to confirm.')
     setFormData({
