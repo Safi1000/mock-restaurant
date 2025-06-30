@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Menu, X } from 'lucide-react'
 import './Header.css'
 
+// Header component with responsive navigation and smooth scrolling
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
