@@ -149,80 +149,106 @@ const Hero = () => {
                   transition={{ type: "spring", stiffness: 300 }}
                 >
                   <Card
-                    elevation={12}
+                    elevation={0}
                     sx={{
                       minWidth: 280,
                       maxWidth: 320,
-                      background: 'linear-gradient(145deg, rgba(44, 24, 16, 0.95), rgba(88, 48, 32, 0.9))',
-                      backdropFilter: 'blur(20px)',
-                      border: '1px solid rgba(212, 175, 55, 0.4)',
-                      borderRadius: 4,
-                      transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                      background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05))',
+                      backdropFilter: 'blur(25px)',
+                      border: '1px solid rgba(212, 175, 55, 0.3)',
+                      borderRadius: '20px',
+                      transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
+                      position: 'relative',
+                      overflow: 'hidden',
+                      '&::before': {
+                        content: '""',
+                        position: 'absolute',
+                        top: 0,
+                        left: '-100%',
+                        width: '100%',
+                        height: '100%',
+                        background: 'linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.2), transparent)',
+                        transition: 'left 0.6s ease',
+                        zIndex: 1,
+                      },
                       '&:hover': {
-                        background: 'linear-gradient(145deg, rgba(139, 69, 19, 0.95), rgba(160, 82, 45, 0.9))',
-                        boxShadow: '0 20px 40px rgba(212, 175, 55, 0.3)',
-                        transform: 'translateY(-4px)',
-                        border: '1px solid rgba(212, 175, 55, 0.6)',
+                        background: 'linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(212, 175, 55, 0.08))',
+                        boxShadow: '0 25px 50px rgba(212, 175, 55, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2)',
+                        transform: 'translateY(-10px)',
+                        borderColor: 'rgba(212, 175, 55, 0.6)',
+                        '&::before': {
+                          left: '100%',
+                        }
                       }
                     }}
                   >
-                    <CardContent sx={{ padding: 3 }}>
-                      <Box display="flex" alignItems="center" gap={2} mb={2}>
+                    <CardContent sx={{ padding: '2rem', position: 'relative', zIndex: 2 }}>
+                      <Box display="flex" alignItems="center" gap={1.5} mb={2}>
                         <Box
                           sx={{
-                            background: `linear-gradient(135deg, ${stat.color}, ${stat.color}99)`,
-                            borderRadius: '50%',
-                            padding: 1.5,
+                            color: stat.color,
                             display: 'flex',
                             alignItems: 'center',
                             justifyContent: 'center',
-                            boxShadow: `0 8px 16px ${stat.color}33`
+                            transition: 'all 0.3s ease',
+                            filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.3))',
+                            '&:hover': {
+                              transform: 'scale(1.1) rotate(5deg)',
+                              filter: 'drop-shadow(0 4px 8px rgba(0,0,0,0.4))',
+                            }
                           }}
                         >
                           <stat.icon 
                             sx={{ 
-                              color: 'white', 
                               fontSize: 28,
-                              filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.3))'
+                              color: stat.color,
                             }} 
                           />
                         </Box>
-                        <Chip 
-                          label={stat.chipLabel}
-                          size="small"
+                        <Typography 
+                          variant="caption"
                           sx={{
-                            backgroundColor: `${stat.color}30`,
-                            color: stat.color,
+                            color: 'rgba(255, 248, 220, 0.8)',
                             fontWeight: 600,
                             fontSize: '0.75rem',
-                            border: `1px solid ${stat.color}50`
+                            textTransform: 'uppercase',
+                            letterSpacing: '1px',
+                            textShadow: '1px 1px 2px rgba(0, 0, 0, 0.5)'
                           }}
-                        />
+                        >
+                          {stat.chipLabel}
+                        </Typography>
                       </Box>
                       
                       <Typography 
                         variant="h4" 
                         component="div"
                         sx={{
-                          fontWeight: 800,
-                          color: '#FFD700',
+                          fontWeight: 700,
+                          color: 'var(--primary-gold)',
                           marginBottom: 0.5,
-                          fontSize: '1.8rem',
+                          fontSize: '1.6rem',
                           letterSpacing: '0.5px',
-                          textShadow: '2px 2px 4px rgba(0, 0, 0, 0.7)'
+                          textShadow: '2px 2px 4px rgba(0, 0, 0, 0.7)',
+                          transition: 'all 0.3s ease',
+                          '&:hover': {
+                            transform: 'scale(1.05)',
+                            color: '#FFD700',
+                          }
                         }}
                       >
                         {stat.value}
                       </Typography>
                       
                       <Typography 
-                        variant="body1" 
+                        variant="body2" 
                         sx={{
-                          color: 'rgba(255, 248, 220, 0.9)',
+                          color: 'var(--light-cream)',
                           fontWeight: 500,
-                          fontSize: '0.95rem',
+                          fontSize: '0.9rem',
                           textTransform: 'uppercase',
                           letterSpacing: '1px',
+                          opacity: 0.9,
                           textShadow: '1px 1px 2px rgba(0, 0, 0, 0.6)'
                         }}
                       >
