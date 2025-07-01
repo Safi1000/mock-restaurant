@@ -27,9 +27,12 @@
 /* Contact Information Cards */
 .contact-info-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(2, minmax(340px, 1fr));
+  grid-template-rows: repeat(2, 1fr);
+  gap: 2.5rem 3.5rem;
   margin-bottom: 3rem;
+  justify-content: center;
+  align-items: stretch;
 }
 
 .contact-info-card {
@@ -37,12 +40,18 @@
   backdrop-filter: blur(25px);
   border: 1px solid rgba(212, 175, 55, 0.25);
   border-radius: 25px;
-  padding: 2.5rem;
-  text-align: center;
+  padding: 2.8rem 2.8rem 2.8rem 2.8rem;
+  text-align: left;
   transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   box-shadow: 0 12px 35px rgba(0, 0, 0, 0.08);
   position: relative;
   overflow: hidden;
+  min-width: 320px;
+  max-width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 2rem;
 }
 
 .contact-info-card::before {
@@ -85,29 +94,11 @@
 }
 
 .contact-icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 80px;
-  height: 80px;
-  background: linear-gradient(135deg, var(--primary-gold), #B8860B);
-  border-radius: 50%;
-  margin: 0 auto 1.75rem;
-  color: var(--dark-brown);
-  box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
-  transition: all 0.4s ease;
-  position: relative;
-  z-index: 2;
-}
-
-.contact-info-card:hover .contact-icon {
-  transform: scale(1.1) rotate(5deg);
-  box-shadow: 0 15px 40px rgba(212, 175, 55, 0.4);
+  margin: 0 2rem 0 0;
 }
 
 .contact-details {
-  position: relative;
-  z-index: 2;
+  text-align: left;
 }
 
 .contact-details h3 {
@@ -333,8 +324,21 @@
 /* Responsive Design */
 @media (max-width: 968px) {
   .contact-info-grid {
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: 1fr;
     gap: 1.5rem;
+  }
+  .contact-info-card {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    min-width: 0;
+    padding: 2rem;
+  }
+  .contact-icon {
+    margin: 0 0 1.5rem 0;
+  }
+  .contact-details {
+    text-align: center;
   }
   
   .reservation-section {

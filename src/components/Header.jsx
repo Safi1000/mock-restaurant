@@ -100,22 +100,6 @@ const Header = () => {
               <span className="logo-tagline">Fine Dining</span>
             </motion.div>
 
-            {/* CTA Button - Left Side */}
-            {showCtaButton && (
-              <motion.a 
-                href="#contact" 
-                className="cta-button"
-                whileHover={{ 
-                  scale: 1.05,
-                  boxShadow: "0 10px 25px rgba(212, 175, 55, 0.4)"
-                }}
-                whileTap={{ scale: 0.95 }}
-                transition={{ type: "spring", stiffness: 400, damping: 10 }}
-              >
-                Reserve Table
-              </motion.a>
-            )}
-
             {/* Desktop Navigation */}
             {showDesktopNav && (
               <nav className="nav-desktop">

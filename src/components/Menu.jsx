@@ -159,28 +159,6 @@ const Menu = () => {
         </motion.div>
 
         <motion.div 
-          className="menu-categories"
-          initial={{ opacity: 0, y: 30 }}
-          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-        >
-          {categories.map((category) => (
-            <motion.button
-              key={category.id}
-              className={`btn ${activeCategory === category.id ? 'btn-primary' : 'btn-secondary'}`}
-              onClick={() => setActiveCategory(category.id)}
-              variants={categoryVariants}
-              animate={activeCategory === category.id ? 'active' : 'inactive'}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <span className="category-name">{category.name}</span>
-              <span className="category-count">({category.count})</span>
-            </motion.button>
-          ))}
-        </motion.div>
-
-        <motion.div 
           className="menu-grid"
           variants={containerVariants}
           initial="hidden"
@@ -227,14 +205,6 @@ const Menu = () => {
                     <span className="menu-item-price">{item.price}</span>
                   </div>
                   <p className="menu-item-description">{item.description}</p>
-                  
-                  <motion.button 
-                    className="add-to-order-btn"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    Add to Order
-                  </motion.button>
                 </div>
               </motion.div>
             ))}

@@ -75,164 +75,40 @@ const Hero = () => {
         />
       </div>
       <div className="hero-overlay"></div>
-      
       <div className="container">
         <motion.div 
-          className="hero-content"
+          className="hero-content hero-compact-centered"
           variants={containerVariants}
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
         >
-          <div className="hero-left">
-            <div className="hero-text">
-              <motion.span 
-                className="hero-subtitle"
-                variants={itemVariants}
-              >
-                Fine Dining Experience
-              </motion.span>
-              
-              <motion.h1 
-                className="hero-title"
-                variants={itemVariants}
-              >
-                Bella Vista
-              </motion.h1>
-              
-              <motion.p 
-                className="hero-description"
-                variants={itemVariants}
-              >
-                Experience culinary excellence in an atmosphere of timeless elegance. 
-                Where every dish tells a story and every moment becomes a cherished memory.
-              </motion.p>
-
-              <motion.div 
-                className="hero-actions"
-                variants={itemVariants}
-              >
-                <motion.a 
-                  href="#contact" 
-                  className="btn btn-primary"
-                  whileHover={{ scale: 1.05, boxShadow: "0 10px 25px rgba(212, 175, 55, 0.4)" }}
-                  whileTap={{ scale: 0.95 }}
-                  transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                >
-                  Reserve Table
-                </motion.a>
-                <motion.a 
-                  href="#menu" 
-                  className="btn btn-secondary"
-                  whileHover={{ scale: 1.05, boxShadow: "0 10px 25px rgba(255, 255, 255, 0.2)" }}
-                  whileTap={{ scale: 0.95 }}
-                  transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                >
-                  View Menu
-                </motion.a>
-              </motion.div>
-            </div>
-          </div>
-
-          <div className="hero-right">
-            <motion.div 
-              className="hero-stats-mui"
-              variants={itemVariants}
-            >
-              {stats.map((stat, index) => (
-                <motion.div 
-                  key={index}
-                  whileHover={{ 
-                    scale: 1.05,
-                    y: -8,
-                    transition: { type: "spring", stiffness: 400, damping: 10 }
-                  }}
-                  transition={{ type: "spring", stiffness: 300 }}
-                >
-                  <Card
-                    elevation={12}
-                    sx={{
-                      minWidth: 280,
-                      maxWidth: 320,
-                      background: 'linear-gradient(145deg, rgba(44, 24, 16, 0.95), rgba(88, 48, 32, 0.9))',
-                      backdropFilter: 'blur(20px)',
-                      border: '1px solid rgba(212, 175, 55, 0.4)',
-                      borderRadius: 4,
-                      transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-                      '&:hover': {
-                        background: 'linear-gradient(145deg, rgba(139, 69, 19, 0.95), rgba(160, 82, 45, 0.9))',
-                        boxShadow: '0 20px 40px rgba(212, 175, 55, 0.3)',
-                        transform: 'translateY(-4px)',
-                        border: '1px solid rgba(212, 175, 55, 0.6)',
-                      }
-                    }}
-                  >
-                    <CardContent sx={{ padding: 3 }}>
-                      <Box display="flex" alignItems="center" gap={2} mb={2}>
-                        <Box
-                          sx={{
-                            background: `linear-gradient(135deg, ${stat.color}, ${stat.color}99)`,
-                            borderRadius: '50%',
-                            padding: 1.5,
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            boxShadow: `0 8px 16px ${stat.color}33`
-                          }}
-                        >
-                          <stat.icon 
-                            sx={{ 
-                              color: 'white', 
-                              fontSize: 28,
-                              filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.3))'
-                            }} 
-                          />
-                        </Box>
-                        <Chip 
-                          label={stat.chipLabel}
-                          size="small"
-                          sx={{
-                            backgroundColor: `${stat.color}30`,
-                            color: stat.color,
-                            fontWeight: 600,
-                            fontSize: '0.75rem',
-                            border: `1px solid ${stat.color}50`
-                          }}
-                        />
-                      </Box>
-                      
-                      <Typography 
-                        variant="h4" 
-                        component="div"
-                        sx={{
-                          fontWeight: 800,
-                          color: '#FFD700',
-                          marginBottom: 0.5,
-                          fontSize: '1.8rem',
-                          letterSpacing: '0.5px',
-                          textShadow: '2px 2px 4px rgba(0, 0, 0, 0.7)'
-                        }}
-                      >
-                        {stat.value}
-                      </Typography>
-                      
-                      <Typography 
-                        variant="body1" 
-                        sx={{
-                          color: 'rgba(255, 248, 220, 0.9)',
-                          fontWeight: 500,
-                          fontSize: '0.95rem',
-                          textTransform: 'uppercase',
-                          letterSpacing: '1px',
-                          textShadow: '1px 1px 2px rgba(0, 0, 0, 0.6)'
-                        }}
-                      >
-                        {stat.label}
-                      </Typography>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              ))}
-            </motion.div>
+          <motion.span className="hero-subtitle" variants={itemVariants}>
+            Fine Dining Experience
+          </motion.span>
+          <motion.h1 className="hero-title" variants={itemVariants}>
+            Bella Vista
+          </motion.h1>
+          <motion.p className="hero-description" variants={itemVariants}>
+            Experience <span className="desc-highlight">culinary excellence</span> in an atmosphere of <span className="desc-highlight">timeless elegance</span>.<br/>
+            Where every dish tells a story and every moment becomes a <span className="desc-highlight">cherished memory</span>.
+          </motion.p>
+          <motion.a 
+            href="#contact" 
+            className="cta-button"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            transition={{ type: "spring", stiffness: 400, damping: 10 }}
+          >
+            Book Your Experience
+          </motion.a>
+          <div className="hero-stats-row-simple">
+            {stats.map((stat, index) => (
+              <div className="hero-stat-simple" key={index}>
+                <div className="stat-bar"></div>
+                <span className="stat-value">{stat.value}</span>
+                <span className="stat-label">{stat.label}</span>
+              </div>
+            ))}
           </div>
         </motion.div>
       </div>

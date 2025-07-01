@@ -25,11 +25,9 @@
 
 .header-content {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  gap: 2rem;
-  width: 100%;
-  flex-wrap: nowrap;
+  justify-content: space-between;
+  gap: 3.5rem;
 }
 
 .logo {
@@ -42,7 +40,7 @@
 
 .logo-text {
   font-family: var(--font-heading);
-  font-size: 1.75rem;
+  font-size: 1.925rem;
   font-weight: 700;
   color: var(--soft-white);
   line-height: 1;
@@ -51,7 +49,7 @@
 
 .logo-tagline {
   font-family: var(--font-body);
-  font-size: 0.7rem;
+  font-size: 0.77rem;
   color: var(--primary-gold);
   text-transform: uppercase;
   letter-spacing: 2px;
@@ -62,11 +60,8 @@
 /* Desktop Navigation */
 .nav-desktop {
   display: flex;
-  gap: 2rem;
+  gap: 2.5rem;
   align-items: center;
-  flex-shrink: 0;
-  min-width: 0;
-  margin-left: auto;
 }
 
 .nav-link {
@@ -80,6 +75,7 @@
   transition: all 0.3s ease;
   white-space: nowrap;
   padding: 0.4rem 0.8rem;
+  margin: 0 0.5rem;
 }
 
 .nav-link::after {
@@ -372,11 +368,11 @@
   }
   
   .logo-text {
-    font-size: 1.5rem;
+    font-size: 1.65rem;
   }
   
   .logo-tagline {
-    font-size: 0.65rem;
+    font-size: 0.715rem;
   }
 
   .header {
@@ -401,7 +397,11 @@
   }
   
   .logo-text {
-    font-size: 1.35rem;
+    font-size: 1.485rem;
+  }
+  
+  .logo-tagline {
+    font-size: 0.715rem;
   }
   
   .mobile-menu {
