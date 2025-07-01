@@ -167,7 +167,7 @@ const Menu = () => {
           {categories.map((category) => (
             <motion.button
               key={category.id}
-              className={`category-btn ${activeCategory === category.id ? 'active' : ''}`}
+              className={`btn ${activeCategory === category.id ? 'btn-primary' : 'btn-secondary'}`}
               onClick={() => setActiveCategory(category.id)}
               variants={categoryVariants}
               animate={activeCategory === category.id ? 'active' : 'inactive'}
