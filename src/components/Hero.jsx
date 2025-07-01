@@ -1,7 +1,18 @@
 import React from 'react'
-import { Star, Award, Users } from 'lucide-react'
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
+import { 
+  Card, 
+  CardContent, 
+  Typography, 
+  Box,
+  Chip
+} from '@mui/material'
+import { 
+  Star as StarIcon,
+  EmojiEvents as TrophyIcon,
+  People as PeopleIcon 
+} from '@mui/icons-material'
 import './Hero.css'
 
 const Hero = () => {
@@ -31,9 +42,27 @@ const Hero = () => {
   }
 
   const stats = [
-    { icon: Star, label: "Award Winning", value: "2024" },
-    { icon: Award, label: "Michelin Guide", value: "Featured" },
-    { icon: Users, label: "Happy Guests", value: "10K+" }
+    { 
+      icon: StarIcon, 
+      label: "Award Winning", 
+      value: "2024",
+      color: "#FFD700",
+      chipLabel: "Excellence"
+    },
+    { 
+      icon: TrophyIcon, 
+      label: "Michelin Guide", 
+      value: "Featured",
+      color: "#FF6B35",
+      chipLabel: "Premium"
+    },
+    { 
+      icon: PeopleIcon, 
+      label: "Happy Guests", 
+      value: "10K+",
+      color: "#4CAF50",
+      chipLabel: "Trusted"
+    }
   ]
 
   return (
@@ -106,25 +135,97 @@ const Hero = () => {
 
           <div className="hero-right">
             <motion.div 
-              className="hero-stats"
+              className="hero-stats-mui"
               variants={itemVariants}
             >
               {stats.map((stat, index) => (
                 <motion.div 
-                  key={index} 
-                  className="stat-item"
+                  key={index}
                   whileHover={{ 
-                    scale: 1.08,
-                    y: -10,
+                    scale: 1.05,
+                    y: -8,
                     transition: { type: "spring", stiffness: 400, damping: 10 }
                   }}
                   transition={{ type: "spring", stiffness: 300 }}
                 >
-                  <stat.icon className="stat-icon" />
-                  <div className="stat-content">
-                    <span className="stat-value">{stat.value}</span>
-                    <span className="stat-label">{stat.label}</span>
-                  </div>
+                  <Card
+                    elevation={12}
+                    sx={{
+                      minWidth: 280,
+                      maxWidth: 320,
+                      background: 'linear-gradient(145deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.85))',
+                      backdropFilter: 'blur(20px)',
+                      border: '1px solid rgba(255, 255, 255, 0.3)',
+                      borderRadius: 4,
+                      transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                      '&:hover': {
+                        background: 'linear-gradient(145deg, rgba(255, 255, 255, 0.98), rgba(255, 255, 255, 0.92))',
+                        boxShadow: '0 20px 40px rgba(0, 0, 0, 0.15)',
+                        transform: 'translateY(-4px)',
+                      }
+                    }}
+                  >
+                    <CardContent sx={{ padding: 3 }}>
+                      <Box display="flex" alignItems="center" gap={2} mb={2}>
+                        <Box
+                          sx={{
+                            background: `linear-gradient(135deg, ${stat.color}, ${stat.color}99)`,
+                            borderRadius: '50%',
+                            padding: 1.5,
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            boxShadow: `0 8px 16px ${stat.color}33`
+                          }}
+                        >
+                          <stat.icon 
+                            sx={{ 
+                              color: 'white', 
+                              fontSize: 28,
+                              filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.3))'
+                            }} 
+                          />
+                        </Box>
+                        <Chip 
+                          label={stat.chipLabel}
+                          size="small"
+                          sx={{
+                            backgroundColor: `${stat.color}20`,
+                            color: stat.color,
+                            fontWeight: 600,
+                            fontSize: '0.75rem'
+                          }}
+                        />
+                      </Box>
+                      
+                      <Typography 
+                        variant="h4" 
+                        component="div"
+                        sx={{
+                          fontWeight: 800,
+                          color: '#2c3e50',
+                          marginBottom: 0.5,
+                          fontSize: '1.8rem',
+                          letterSpacing: '0.5px'
+                        }}
+                      >
+                        {stat.value}
+                      </Typography>
+                      
+                      <Typography 
+                        variant="body1" 
+                        sx={{
+                          color: '#7f8c8d',
+                          fontWeight: 500,
+                          fontSize: '0.95rem',
+                          textTransform: 'uppercase',
+                          letterSpacing: '1px'
+                        }}
+                      >
+                        {stat.label}
+                      </Typography>
+                    </CardContent>
+                  </Card>
                 </motion.div>
               ))}
             </motion.div>
