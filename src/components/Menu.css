@@ -71,10 +71,9 @@
 
 .menu-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   gap: 2rem;
   margin-top: 3rem;
-  justify-content: center;
 }
 
 .menu-item {
@@ -86,9 +85,6 @@
   border: 1px solid rgba(212, 175, 55, 0.15);
   position: relative;
   transform-origin: center;
-  height: 580px; /* Fixed height for all cards */
-  display: flex;
-  flex-direction: column;
 }
 
 .menu-item::before {
@@ -117,9 +113,8 @@
 
 .menu-item-image {
   position: relative;
-  height: 240px; /* Consistent image height */
+  height: 280px;
   overflow: hidden;
-  flex-shrink: 0; /* Prevent image from shrinking */
 }
 
 .menu-item-image img {
@@ -184,10 +179,6 @@
   padding: 2rem;
   position: relative;
   z-index: 2;
-  display: flex;
-  flex-direction: column;
-  flex: 1; /* Take up remaining space */
-  justify-content: space-between; /* Distribute content evenly */
 }
 
 .menu-item-header {
@@ -196,7 +187,6 @@
   align-items: flex-start;
   margin-bottom: 1.25rem;
   gap: 1rem;
-  flex-shrink: 0; /* Prevent header from shrinking */
 }
 
 .menu-item-name {
@@ -235,15 +225,9 @@
 .menu-item-description {
   color: var(--medium-brown);
   line-height: 1.7;
-  margin: 0;
+  margin: 0 0 2rem 0;
   font-size: 1rem;
   transition: color 0.3s ease;
-  flex: 1; /* Allow description to grow and fill space */
-  display: -webkit-box;
-  -webkit-line-clamp: 4; /* Limit to 4 lines for consistency */
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 .menu-item:hover .menu-item-description {
@@ -265,8 +249,6 @@
   width: 100%;
   position: relative;
   overflow: hidden;
-  margin-top: 1.5rem; /* Consistent spacing above button */
-  flex-shrink: 0; /* Prevent button from shrinking */
 }
 
 .add-to-order-btn::before {
@@ -319,10 +301,6 @@
     gap: 1.5rem;
   }
   
-  .menu-item {
-    height: 520px; /* Adjusted height for mobile */
-  }
-  
   .menu-categories {
     gap: 0.75rem;
   }
@@ -333,7 +311,7 @@
   }
   
   .menu-item-image {
-    height: 200px; /* Adjusted image height for mobile */
+    height: 200px;
   }
   
   .menu-item-content {
@@ -351,19 +329,6 @@
 }
 
 @media (max-width: 480px) {
-  .menu-grid {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-  }
-  
-  .menu-item {
-    height: 480px; /* Further adjusted for smaller screens */
-  }
-  
-  .menu-item-image {
-    height: 180px;
-  }
-  
   .menu-categories {
     flex-direction: column;
     align-items: center;
@@ -385,9 +350,5 @@
   .menu-item-price {
     align-self: flex-end;
     font-size: 1.2rem;
-  }
-  
-  .menu-item-content {
-    padding: 1rem;
   }
 } 
