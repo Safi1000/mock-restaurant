@@ -138,6 +138,7 @@
   box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
   white-space: nowrap;
   flex-shrink: 0;
+  height: 55px;
 }
 
 .cta-button:hover {
