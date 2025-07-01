@@ -153,15 +153,16 @@ const Hero = () => {
                     sx={{
                       minWidth: 280,
                       maxWidth: 320,
-                      background: 'linear-gradient(145deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.85))',
+                      background: 'linear-gradient(145deg, rgba(44, 24, 16, 0.95), rgba(88, 48, 32, 0.9))',
                       backdropFilter: 'blur(20px)',
-                      border: '1px solid rgba(255, 255, 255, 0.3)',
+                      border: '1px solid rgba(212, 175, 55, 0.4)',
                       borderRadius: 4,
                       transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
                       '&:hover': {
-                        background: 'linear-gradient(145deg, rgba(255, 255, 255, 0.98), rgba(255, 255, 255, 0.92))',
-                        boxShadow: '0 20px 40px rgba(0, 0, 0, 0.15)',
+                        background: 'linear-gradient(145deg, rgba(139, 69, 19, 0.95), rgba(160, 82, 45, 0.9))',
+                        boxShadow: '0 20px 40px rgba(212, 175, 55, 0.3)',
                         transform: 'translateY(-4px)',
+                        border: '1px solid rgba(212, 175, 55, 0.6)',
                       }
                     }}
                   >
@@ -190,10 +191,11 @@ const Hero = () => {
                           label={stat.chipLabel}
                           size="small"
                           sx={{
-                            backgroundColor: `${stat.color}20`,
+                            backgroundColor: `${stat.color}30`,
                             color: stat.color,
                             fontWeight: 600,
-                            fontSize: '0.75rem'
+                            fontSize: '0.75rem',
+                            border: `1px solid ${stat.color}50`
                           }}
                         />
                       </Box>
@@ -203,10 +205,11 @@ const Hero = () => {
                         component="div"
                         sx={{
                           fontWeight: 800,
-                          color: '#2c3e50',
+                          color: '#FFD700',
                           marginBottom: 0.5,
                           fontSize: '1.8rem',
-                          letterSpacing: '0.5px'
+                          letterSpacing: '0.5px',
+                          textShadow: '2px 2px 4px rgba(0, 0, 0, 0.7)'
                         }}
                       >
                         {stat.value}
@@ -215,11 +218,12 @@ const Hero = () => {
                       <Typography 
                         variant="body1" 
                         sx={{
-                          color: '#7f8c8d',
+                          color: 'rgba(255, 248, 220, 0.9)',
                           fontWeight: 500,
                           fontSize: '0.95rem',
                           textTransform: 'uppercase',
-                          letterSpacing: '1px'
+                          letterSpacing: '1px',
+                          textShadow: '1px 1px 2px rgba(0, 0, 0, 0.6)'
                         }}
                       >
                         {stat.label}

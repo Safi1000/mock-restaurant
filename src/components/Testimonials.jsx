@@ -202,7 +202,7 @@ const Testimonials = () => {
           {testimonials.map((testimonial, index) => (
             <motion.div
               key={testimonial.id}
-              className={`testimonial-card ${testimonial.featured ? 'featured' : ''}`}
+              className="testimonial-card"
               variants={itemVariants}
               whileHover={{ 
                 scale: 1.02,
@@ -247,18 +247,6 @@ const Testimonials = () => {
                   <p className="author-location">{testimonial.location}</p>
                 </div>
               </div>
-
-              {testimonial.featured && (
-                <motion.div 
-                  className="featured-badge"
-                  initial={{ scale: 0, rotate: 45 }}
-                  animate={inView ? { scale: 1, rotate: 0 } : { scale: 0, rotate: 45 }}
-                  transition={{ duration: 0.4, delay: 1 + index * 0.1 }}
-                >
-                  <Award size={16} />
-                  <span>Featured</span>
-                </motion.div>
-              )}
             </motion.div>
           ))}
         </motion.div>
